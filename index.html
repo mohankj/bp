@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#102a43" />
+  <meta name="description" content="A modern BPSC preparation dashboard with syllabus tracking, timed practice tests, previous-year paper links, bookmarks and progress." />
+  <title>BPSC Path — Prepare with direction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="BPSC Path home">
+        <span class="brand-mark"><span>B</span><i>✦</i></span>
+        <span class="brand-text">bpsc<span>path</span><small>PREPARE WITH DIRECTION</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span><span>Overview</span></button>
+        <button class="nav-item" data-view="syllabus"><span class="nav-icon">▤</span><span>Syllabus tracker</span><span class="nav-count" id="sideSyllabusCount">0%</span></button>
+        <button class="nav-item" data-view="pyq"><span class="nav-icon">▧</span><span>Previous papers</span></button>
+        <button class="nav-item" data-view="practice"><span class="nav-icon">◉</span><span>Practice questions</span></button>
+        <button class="nav-item" data-view="mocks"><span class="nav-icon">◷</span><span>Mock tests</span></button>
+        <button class="nav-item" data-view="saved"><span class="nav-icon">☆</span><span>Saved & review</span><span class="nav-count" id="savedCount">0</span></button>
+        <button class="nav-item" data-view="progress"><span class="nav-icon">↗</span><span>My progress</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="focus-card">
+          <div class="focus-overline"><span class="tiny-dot"></span> DAILY FOCUS</div>
+          <h3>Small steps.<br>Strong results.</h3>
+          <p>Consistency beats last-minute cramming. Complete one focused session today.</p>
+          <button class="focus-button" data-action="quick-start">Start a 10-min test <span>↗</span></button>
+        </div>
+        <a class="official-link" href="https://bpsc.bihar.gov.in/" target="_blank" rel="noopener"><span>↗</span> Official BPSC website</a>
+        <div class="sidebar-foot">Made for focused preparation<br><span>Progress is saved on this device.</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="pageBreadcrumb">Overview</strong></div>
+        <div class="topbar-actions">
+          <label class="global-search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search topics or questions..." aria-label="Search topics or questions"><kbd>⌘ K</kbd></label>
+          <button class="icon-button" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">◐</button>
+          <div class="user-avatar" title="Your study profile">M</div>
+        </div>
+      </header>
+
+      <div id="viewRoot" class="view-root" tabindex="-1"></div>
+      <footer class="main-footer"><span>© <span id="yearNow"></span> BPSC Path · Independent preparation tool</span><span><a href="https://bpsc.bihar.gov.in/syllabus/" target="_blank" rel="noopener">Official syllabus</a><i>·</i><a href="https://bpsc.bihar.gov.in/question-booklets/" target="_blank" rel="noopener">Official question booklets</a></span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="testDialog" class="test-dialog">
+    <form method="dialog" class="dialog-head"><div><span class="eyebrow">READY WHEN YOU ARE</span><h2>Set up your test</h2><p>Choose a focused session or a longer practice run.</p></div><button class="close-button" aria-label="Close dialog">×</button></form>
+    <div class="dialog-body">
+      <label class="field-label" for="testTopic">Subject</label>
+      <select id="testTopic" class="field-control"><option value="All">All subjects</option><option>Bihar GK</option><option>History</option><option>Polity</option><option>Geography</option><option>Science</option><option>Economy</option><option>Mental Ability</option></select>
+      <label class="field-label" for="testCount">Number of questions</label>
+      <div class="segmented" id="questionCountSelect"><button class="seg-option" data-count="5">5</button><button class="seg-option selected" data-count="10">10</button><button class="seg-option" data-count="20">20</button></div>
+      <label class="field-label" for="testMinutes">Time limit</label>
+      <div class="segmented" id="timeSelect"><button class="seg-option" data-minutes="10">10 min</button><button class="seg-option selected" data-minutes="15">15 min</button><button class="seg-option" data-minutes="30">30 min</button></div>
+      <div class="marking-note"><span>ⓘ</span><div><strong>Scoring settings</strong><p>72nd CCE-style practice: +1 correct, −⅓ for a wrong A–D answer or a completely blank response. Choose E (Not attempted) for a deliberate skip worth 0. Confirm the latest notice for your target exam.</p></div></div>
+      <button class="primary-button full-width" id="beginTest">Start test <span>→</span></button>
+    </div>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
